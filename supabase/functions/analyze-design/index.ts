@@ -1,0 +1,11 @@
+import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
+const cors={"Access-Control-Allow-Origin":"*","Access-Control-Allow-Headers":"authorization, x-client-info, apikey, content-type","Access-Control-Allow-Methods":"POST, OPTIONS"};
+serve(async req=>{if(req.method==="OPTIONS")return new Response("ok",{headers:cors});try{
+const key=Deno.env.get("OPENAI_API_KEY");if(!key)throw new Error("OPENAI_API_KEY ist in Supabase noch nicht hinterlegt.");
+const {image}=await req.json();if(typeof image!=="string"||!image.startsWith("data:image/"))throw new Error("Ungültiges Bild.");if(image.length>17_000_000)throw new Error("Bild zu groß.");
+const prompt='Rekonstruiere dieses Website-Design möglichst detailgetreu als responsive Website. Analysiere Layout, Farben, Typografie, Abstände und Komponenten. Semantisches HTML5, vollständiges CSS3 mit Mobile Media Queries und optional Vanilla JS. Erfinde keine großen zusätzlichen Sektionen. Antworte ausschließlich als JSON-Objekt mit String-Feldern: {"index.html":"vollständiges HTML","styles.css":"vollständiges CSS","script.js":"JavaScript oder leer"}. Kein Markdown.';
+const response=await fetch("https://api.openai.com/v1/chat/completions",{method:"POST",headers:{"Authorization":"Bearer "+key,"Content-Type":"application/json"},body:JSON.stringify({model:"gpt-4.1-mini",max_tokens:12000,response_format:{type:"json_object"},messages:[{role:"user",content:[{type:"text",text:prompt},{type:"image_url",image_url:{url:image,detail:"high"}}]}]})});
+if(!response.ok)throw new Error("KI-Anfrage fehlgeschlagen ("+response.status+"): "+(await response.text()).slice(0,350));
+const data=await response.json(),content=data.choices?.[0]?.message?.content;if(!content)throw new Error("Leere KI-Antwort.");const out=JSON.parse(content);if(typeof out["index.html"]!=="string"||typeof out["styles.css"]!=="string")throw new Error("HTML/CSS fehlen.");
+return new Response(JSON.stringify({files:{"index.html":out["index.html"],"styles.css":out["styles.css"],"script.js":typeof out["script.js"]==="string"?out["script.js"]:""}}),{headers:{...cors,"Content-Type":"application/json"}});
+}catch(e){return new Response(JSON.stringify({error:e instanceof Error?e.message:"Unbekannter Fehler"}),{status:400,headers:{...cors,"Content-Type":"application/json"}})}});
