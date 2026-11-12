@@ -1,82 +1,14 @@
-const input = document.getElementById("fileInput");
-const dropzone = document.getElementById("dropzone");
-const preview = document.getElementById("previewImage");
-const emptyPreview = document.querySelector(".empty-preview");
-const meta = document.getElementById("fileMeta");
-const status = document.getElementById("previewStatus");
-const generate = document.getElementById("generateBtn");
-const notice = document.getElementById("notice");
-const resultPanel = document.getElementById("resultPanel");
-const codeOutput = document.getElementById("codeOutput");
-const copyBtn = document.getElementById("copyBtn");
-let selectedFile = null;
-let imageUrl = null;
-
-function loadFile(file) {
-  if (!file) return;
-  if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-    notice.textContent = "Bitte wähle eine JPG-, PNG- oder WEBP-Datei aus.";
-    return;
-  }
-  if (file.size > 15 * 1024 * 1024) {
-    notice.textContent = "Die Datei ist größer als 15 MB. Bitte wähle ein kleineres Bild.";
-    return;
-  }
-  selectedFile = file;
-  if (imageUrl) URL.revokeObjectURL(imageUrl);
-  imageUrl = URL.createObjectURL(file);
-  preview.src = imageUrl;
-  preview.hidden = false;
-  emptyPreview.hidden = true;
-  meta.textContent = file.name + " · " + (file.size / 1024 / 1024).toFixed(2) + " MB";
-  status.textContent = "BILD GELADEN";
-  generate.disabled = false;
-  resultPanel.hidden = true;
-  notice.textContent = "Bild erfolgreich geladen. Die KI-Analyse ist noch nicht verbunden; du kannst bereits einen responsiven HTML-Bild-Startcode exportieren.";
-}
-input.addEventListener("change", () => loadFile(input.files[0]));
-["dragenter", "dragover"].forEach(type => dropzone.addEventListener(type, event => {
-  event.preventDefault(); dropzone.classList.add("dragover");
-}));
-["dragleave", "drop"].forEach(type => dropzone.addEventListener(type, event => {
-  event.preventDefault(); dropzone.classList.remove("dragover");
-}));
-dropzone.addEventListener("drop", event => loadFile(event.dataTransfer.files[0]));
-
-generate.addEventListener("click", () => {
-  if (!selectedFile) return;
-  const safeName = selectedFile.name.replace(/[<>&"]/g, "");
-  const code = `<!-- CSSGuru starter export: ${safeName} -->
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mein Design</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <main class="design-preview">
-    <img src="DEIN-BILD.jpg" alt="Design-Vorlage">
-  </main>
-</body>
-</html>
-
-/* style.css */
-* { box-sizing: border-box; }
-body { margin: 0; background: #f5f5f5; }
-.design-preview { width: 100%; max-width: 1440px; margin: 0 auto; }
-.design-preview img { display: block; width: 100%; height: auto; }`;
-  codeOutput.textContent = code;
-  resultPanel.hidden = false;
-  notice.textContent = "Startcode erstellt. Wichtig: Das ist noch keine KI-Rekonstruktion der einzelnen Designelemente.";
-  resultPanel.scrollIntoView({ behavior: "smooth", block: "start" });
-});
-copyBtn.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(codeOutput.textContent);
-    copyBtn.textContent = "Kopiert ✓";
-  } catch {
-    copyBtn.textContent = "Bitte Code markieren";
-  }
-});
+const $=id=>document.getElementById(id);
+const input=$("fileInput"),drop=$("dropzone"),source=$("sourceImage"),empty=$("uploadEmpty"),badge=$("fileBadge"),info=$("fileInfo"),convert=$("convertBtn"),error=$("error"),frame=$("previewFrame"),emptyPreview=$("emptyPreview"),browser=$("browser"),download=$("downloadBtn"),codeOut=$("codeOutput");
+let selected=null,generated=null,activeFile="index.html",previewUrl=null;
+const supabaseUrl="",supabaseAnonKey=""; // Public Supabase project URL + anon key are configured here or injected at deployment.
+function showError(message){error.textContent=message;error.hidden=false}
+function loadFile(file){if(!file)return;if(!["image/png","image/jpeg","image/webp"].includes(file.type))return showError("Bitte PNG, JPG oder WEBP auswählen.");if(file.size>12*1024*1024)return showError("Das Bild darf maximal 12 MB groß sein.");error.hidden=true;selected=file;generated=null;download.disabled=true;convert.disabled=false;if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=URL.createObjectURL(file);source.src=previewUrl;source.hidden=false;empty.hidden=true;badge.hidden=false;info.hidden=false;info.textContent=file.name+" · "+(file.size/1048576).toFixed(2)+" MB";}
+drop.addEventListener("click",()=>input.click());drop.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" ")input.click()});input.addEventListener("change",e=>loadFile(e.target.files[0]));drop.addEventListener("dragover",e=>{e.preventDefault();drop.classList.add("drag")});drop.addEventListener("dragleave",()=>drop.classList.remove("drag"));drop.addEventListener("drop",e=>{e.preventDefault();drop.classList.remove("drag");loadFile(e.dataTransfer.files[0])});
+async function toDataUrl(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
+convert.addEventListener("click",async()=>{if(!selected)return;if(!supabaseUrl||!supabaseAnonKey){showError("Die KI-Verbindung ist noch nicht eingerichtet. Bitte Supabase-Projekt und GitHub-Secrets verbinden. Der Upload und die Vorschau funktionieren bereits.");return}convert.disabled=true;convert.textContent="KI analysiert dein Design …";error.hidden=true;try{const image=await toDataUrl(selected);const res=await fetch(supabaseUrl+"/functions/v1/analyze-design",{method:"POST",headers:{"Content-Type":"application/json","apikey":supabaseAnonKey,"Authorization":"Bearer "+supabaseAnonKey},body:JSON.stringify({image,fileName:selected.name})});const data=await res.json();if(!res.ok)throw new Error(data.error||"KI-Anfrage fehlgeschlagen.");generated=data.files;if(!generated?.["index.html"]||!generated?.["styles.css"])throw new Error("Unvollständige Code-Antwort.");renderPreview();download.disabled=false;$("status").textContent="● Code erfolgreich erstellt";document.querySelector('[data-tab="preview"]').click()}catch(e){showError(e.message||"Umwandlung fehlgeschlagen.")}finally{convert.disabled=false;convert.textContent="✧  In Code umwandeln  →"}});
+function renderPreview(){const doc=generated["index.html"].replace("</head>","<style>"+generated["styles.css"]+"</style></head>").replace("</body>","<script>"+(generated["script.js"]||"").replace(/<\/script/gi,"<\\/script")+"</script></body>");frame.srcdoc=doc;frame.hidden=false;emptyPreview.hidden=true;codeOut.textContent=generated[activeFile]||""}
+document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-tab]").forEach(x=>x.classList.toggle("active",x===b));$("previewPane").hidden=b.dataset.tab!=="preview";$("codePane").hidden=b.dataset.tab!=="code"}));
+document.querySelectorAll("[data-device]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-device]").forEach(x=>x.classList.toggle("active",x===b));browser.className="browser "+(b.dataset.device==="desktop"?"":b.dataset.device)}));
+document.querySelectorAll("[data-file]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-file]").forEach(x=>x.classList.toggle("active",x===b));activeFile=b.dataset.file;codeOut.textContent=generated?.[activeFile]||""}));
+download.addEventListener("click",async()=>{if(!generated||!window.JSZip)return;const zip=new JSZip();Object.entries(generated).forEach(([name,content])=>zip.file(name,content||""));zip.file("README.txt","Erstellt mit CSSGuru · https://cssguru.de");const blob=await zip.generateAsync({type:"blob"});const a=document.createElement("a");const url=URL.createObjectURL(blob);a.href=url;a.download="cssguru-export.zip";a.click();URL.revokeObjectURL(url)});
