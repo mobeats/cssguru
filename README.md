@@ -1,17 +1,18 @@
 # CSSGuru — Modern Dark AI
 
-CSSGuru is a static, GitHub Pages-ready frontend for a design-to-code workflow.
+Version 1: Design-zu-Code-Anwendung mit PNG/JPG/WEBP-Upload, KI-Analyse, HTML/CSS/JavaScript-Ausgabe, responsiver Vorschau und ZIP-Export.
 
-## Current V1
-- Responsive Modern Dark AI interface
-- JPG / PNG / WEBP upload with 15 MB validation
-- Local image preview (the selected image is not uploaded to a server)
-- Starter HTML/CSS export and copy action
+## Architektur
+- Frontend: HTML, CSS, JavaScript (statisch, ohne Node.js auf dem Hosting)
+- Hosting: GitHub Pages
+- KI-Backend: Supabase Edge Function
+- Modell: OpenAI Vision (API-Key bleibt serverseitig als Supabase Secret)
 
-## Important limitation
-The AI image understanding and true layout reconstruction are **not connected yet**. The current export is a responsive image wrapper, not a recreation of the design's individual elements. A secure backend and an AI vision service are required for the real conversion workflow.
+## Noch einzurichten
+1. Supabase-Projekt erstellen.
+2. Edge Function `analyze-design` deployen.
+3. Supabase Secret `OPENAI_API_KEY` setzen.
+4. In `app.js` Supabase Project URL und anon key eintragen (öffentlicher anon key, niemals den Service Role Key).
+5. GitHub Pages aktivieren und DNS für cssguru.de auf GitHub Pages konfigurieren.
 
-## Deploy
-The project uses plain HTML, CSS and JavaScript. No Node.js, build step or package installation is required.
-
-GitHub Pages can publish the repository directly from the `main` branch, root folder.
+Bis zur Supabase-Verbindung zeigt die Seite beim Start der KI-Analyse eine klare Meldung. Es wird kein KI-Ergebnis simuliert.
