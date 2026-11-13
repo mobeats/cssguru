@@ -67,3 +67,8 @@ footer a{font-size:12px}
   .result-panel .tabs button,.result-panel .devices button{font-size:12px;padding:8px}
   .result-panel .result-footer{font-size:11px}
 }
+
+
+/* CSSGuru wordmark: make the logo more prominent */
+.topbar .brand{font-size:29px;letter-spacing:-1.2px;line-height:1.1}
+@media(max-width:700px){.topbar .brand{font-size:26px}}
