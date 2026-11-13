@@ -24,3 +24,19 @@ footer a{font-size:12px}
   .privacy{font-size:11px}
   .result-footer{font-size:10px}
 }
+
+
+/* Upload panel: improve readability of labels and helper text */
+.upload-panel .heading h2{font-size:16px}
+.upload-panel .heading small{font-size:12px}
+.dropzone strong{font-size:15px}
+.dropzone span{font-size:13px;line-height:1.5}
+.dropzone small{font-size:12px;line-height:1.5}
+.dropzone #fileBadge{font-size:12px}
+.file-info{font-size:13px;line-height:1.5}
+.analysis b{font-size:13px}
+.analysis p{font-size:13px;line-height:1.6}
+.upload-panel .primary{font-size:14px}
+.upload-panel .privacy{font-size:12px;line-height:1.65}
+.upload-panel .steps b{font-size:13px}
+.upload-panel .steps small{font-size:12px;line-height:1.5}
