@@ -49,3 +49,21 @@ footer a{font-size:12px}
 .upload-panel .steps span{gap:5px}
 .upload-panel .steps b{font-size:14px;line-height:1.4}
 .upload-panel .steps small{font-size:13px;line-height:1.5}
+
+
+/* Result panel: improve readability of headings, tabs, device controls and status */
+.result-panel .heading h2{font-size:16px}
+.result-panel .heading small{font-size:12px}
+.result-panel .download{font-size:12px;padding:9px 12px}
+.result-panel .tabs button,.result-panel .devices button{font-size:13px;padding:9px 11px}
+.result-panel .browserbar{font-size:11px}
+.result-panel .empty h3{font-size:16px}
+.result-panel .empty p{font-size:13px;line-height:1.6}
+.result-panel .empty small{font-size:10px}
+.result-panel .code-tabs button{font-size:12px}
+.result-panel pre{font-size:12px;line-height:1.75}
+.result-panel .result-footer{font-size:12px;line-height:1.6}
+@media(max-width:700px){
+  .result-panel .tabs button,.result-panel .devices button{font-size:12px;padding:8px}
+  .result-panel .result-footer{font-size:11px}
+}
