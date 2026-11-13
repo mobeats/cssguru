@@ -3,3 +3,24 @@
 
 /* Contact page */
 .contact-main{max-width:760px;margin:0 auto;padding:72px 20px 90px}.contact-card{background:linear-gradient(145deg,#121622,#0e111a);border:1px solid var(--line);border-radius:15px;padding:clamp(22px,5vw,42px)}.contact-card h1{font-size:clamp(34px,5vw,48px);margin:14px 0}.contact-card>p{color:#a2a7ba;font-size:14px;line-height:1.7;margin:0 0 28px}.contact-form{display:grid;gap:17px}.contact-form label{display:grid;gap:8px;color:#dfe2ee;font-size:12px;font-weight:600}.contact-form input,.contact-form textarea{width:100%;border:1px solid #34394d;border-radius:8px;background:#090c14;color:#f4f5fb;padding:13px 14px;font:13px 'DM Sans',sans-serif;outline:none}.contact-form input:focus,.contact-form textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px #a58bff18}.contact-form textarea{min-height:170px;resize:vertical}.contact-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.contact-submit{border:0;border-radius:8px;padding:13px 20px;background:linear-gradient(100deg,#9274f4,#6a9ee9);color:white;font-weight:700;font-size:12px;cursor:pointer}.contact-back{color:#aeb4c8;text-decoration:none;font-size:12px}.contact-note{font-size:10px!important;color:#747b90!important;margin:0!important}
+
+
+/* Readability improvements: slightly larger small text and footer */
+.topmeta,.eyebrow,.heading small,.empty small{font-size:11px}
+.topmeta b{font-size:10px}
+.dropzone small{font-size:11px}
+.analysis p{font-size:12px}
+.privacy{font-size:11px;line-height:1.6}
+.steps small{font-size:11px}
+.result-footer{font-size:11px;line-height:1.5}
+footer{min-height:68px;height:auto;padding:14px 0;font-size:12px;line-height:1.5;gap:12px;flex-wrap:wrap}
+footer a{font-size:12px}
+.contact-note{font-size:11px!important;line-height:1.6}
+.contact-back{font-size:13px}
+@media(max-width:700px){
+  .topmeta{font-size:10px}
+  footer{font-size:11px;gap:8px}
+  footer a{font-size:11px}
+  .privacy{font-size:11px}
+  .result-footer{font-size:10px}
+}
