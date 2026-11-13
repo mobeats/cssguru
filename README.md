@@ -7,7 +7,6 @@ CSSGuru ist eine Design-zu-Code-Anwendung: Ein PNG-, JPG- oder WEBP-Design wird 
 Die Grundinstallation ist eingerichtet:
 
 - Website: GitHub Pages
-- Domain: `cssguru.de`
 - Frontend: statisches HTML, CSS und JavaScript
 - KI-Backend: Supabase Edge Function `analyze-design`
 - KI-Modell: OpenAI Vision über die OpenAI API
