@@ -1,46 +1,87 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#090b12">
-  <meta name="description" content="CSSGuru Projekte – Testbereich für Webentwicklung.">
-  <title>Projekte — CSSGuru</title>
-  <style>
-    :root{color-scheme:dark;--bg:#090b12;--panel:#111522;--line:#252b3b;--muted:#9299ad;--text:#f4f5fb;--violet:#a78bfa;--violet2:#7c3aed}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#29204a 0,transparent 48%),var(--bg);color:var(--text);font:15px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
-    a{color:inherit;text-decoration:none}.wrap{width:min(1080px,calc(100% - 40px));margin:auto}
-    header{height:76px;border-bottom:1px solid #ffffff12;display:flex;align-items:center;justify-content:space-between}
-    .brand{font-size:19px;font-weight:850;letter-spacing:.08em}.brand span{color:var(--violet)}.back{color:#c9c2e7;font-size:13px}
-    .hero{padding:76px 0 42px}.eyebrow{color:var(--violet);font-size:11px;font-weight:750;letter-spacing:.2em;text-transform:uppercase}
-    h1{font-size:clamp(38px,6vw,64px);line-height:1.05;letter-spacing:-.045em;margin:16px 0}.hero p{max-width:620px;color:var(--muted);font-size:17px;margin:0}
-    .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 16px}.bar h2{font-size:16px;margin:0}.count{font-size:12px;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding-bottom:76px}
-    .card{background:linear-gradient(145deg,#171b2a,#10131d);border:1px solid var(--line);border-radius:16px;padding:22px;min-height:220px;display:flex;flex-direction:column;transition:.2s}
-    .card:hover{border-color:#8b5cf6aa;transform:translateY(-3px)}.symbol{width:42px;height:42px;border-radius:12px;background:#8b5cf622;color:#c4b5fd;display:grid;place-items:center;font-size:20px}
-    .tag{font-size:10px;color:#c4b5fd;letter-spacing:.12em;text-transform:uppercase;margin-top:20px}.card h3{font-size:18px;margin:5px 0}.card p{font-size:13px;color:var(--muted);margin:0 0 20px}
-    .status{margin-top:auto;color:#a7adc0;font-size:11px}.status i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#a78bfa;margin-right:7px}
-    .note{border:1px dashed #41405a;border-radius:14px;padding:18px 20px;color:var(--muted);font-size:13px;margin:0 0 64px}.note strong{color:#e9e5ff}
-    footer{border-top:1px solid #ffffff12;padding:22px 0;color:#777f93;font-size:12px}
-    @media(max-width:760px){.grid{grid-template-columns:1fr}.hero{padding-top:54px}.card{min-height:190px}.bar{align-items:flex-start;flex-direction:column}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b12">
+<meta name="description" content="CSSGuru Projekte – Webideen entwickeln, testen und live ansehen.">
+<title>Projekte — CSSGuru</title>
+<style>
+:root{color-scheme:dark;--bg:#090b12;--panel:#111522;--panel2:#171b2a;--line:#292e42;--muted:#9299ad;--text:#f4f5fb;--violet:#a78bfa;--cyan:#76d9e6;--green:#8cddaf}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#29204a 0,transparent 48%),var(--bg);color:var(--text);font:15px/1.6 'DM Sans',Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+header{height:76px;border-bottom:1px solid #ffffff12}.head{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font-size:26px;font-weight:850;letter-spacing:-1px}.brand span{color:var(--violet)}.back{color:#c9c2e7;font-size:13px}
+.hero{padding:60px 0 30px}.eyebrow{color:var(--violet);font:11px ui-monospace,monospace;letter-spacing:.18em;text-transform:uppercase}
+h1{font-size:clamp(38px,5vw,58px);line-height:1.06;letter-spacing:-.045em;margin:14px 0}.hero p{max-width:650px;color:var(--muted);font-size:16px;margin:0}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:34px 0 18px}.toolbar h2{font-size:16px;margin:0}.sub{font-size:11px;color:var(--muted);margin-top:3px}
+.btn{border:1px solid #a78bfa66;border-radius:9px;padding:10px 15px;background:#a78bfa18;color:#e6ddff;font-size:12px;font-weight:700;cursor:pointer;transition:.18s}.btn:hover{background:#a78bfa30;border-color:var(--violet)}.btn.primary{background:linear-gradient(100deg,#9274f4,#6a9ee9);border:0;color:white}.btn.ghost{background:transparent;border-color:var(--line);color:#c1c6d7}.btn.danger{border-color:#f17c8a66;color:#ffb5bd;background:#f17c8a10}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;padding-bottom:52px}.project{background:linear-gradient(145deg,#171b2a,#10131d);border:1px solid var(--line);border-radius:15px;padding:19px;min-height:206px;display:flex;flex-direction:column;transition:.2s}.project:hover{border-color:#8b5cf6aa;transform:translateY(-2px)}
+.project-top{display:flex;justify-content:space-between;align-items:center}.symbol{width:39px;height:39px;border-radius:11px;background:#8b5cf622;color:#c4b5fd;display:grid;place-items:center;font-size:19px}.pill{font-size:9px;color:#a9e7c8;border:1px solid #8cddaf44;border-radius:20px;padding:3px 8px}
+.project h3{font-size:17px;margin:15px 0 3px}.project p{font-size:12px;color:var(--muted);margin:0 0 16px}.project-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto}.updated{font-size:10px;color:#7f879b}.open{font-size:11px;color:#c4b5fd;background:none;border:0;cursor:pointer;padding:5px}
+.empty{border:1px dashed #41405a;border-radius:14px;padding:28px;text-align:center;color:var(--muted);grid-column:1/-1}.empty strong{display:block;color:#e9e5ff;margin-bottom:5px}
+.info{border:1px solid #a78bfa33;background:#a78bfa0c;border-radius:12px;padding:14px 17px;color:#aeb4c8;font-size:11px;margin:0 0 60px}.info strong{color:#e7ddff}
+footer{border-top:1px solid #ffffff12;padding:20px 0;color:#777f93;font-size:12px}
+.overlay{position:fixed;inset:0;background:#05060bd9;z-index:10;display:none;align-items:center;justify-content:center;padding:18px}.overlay.show{display:flex}.dialog{width:min(520px,100%);background:#121622;border:1px solid #343951;border-radius:16px;padding:24px;box-shadow:0 24px 80px #0009}.dialog h2{font-size:19px;margin:0 0 5px}.dialog>p{font-size:12px;color:var(--muted);margin:0 0 20px}.field{display:grid;gap:6px;margin:13px 0}.field label{font-size:11px;color:#c5cad9}.field input,.field textarea{width:100%;border:1px solid #34394d;border-radius:8px;background:#090c14;color:#f4f5fb;padding:11px 12px;font-size:13px;outline:none}.field input:focus,.field textarea:focus{border-color:var(--violet)}.dialog-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}
+.editor{position:fixed;inset:0;background:#080a10;z-index:20;display:none;flex-direction:column}.editor.show{display:flex}.editor-head{height:62px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 20px;gap:12px}.editor-title{font-weight:750;font-size:14px}.editor-actions{display:flex;gap:8px;align-items:center}.editor-body{display:grid;grid-template-columns:minmax(320px,1fr) minmax(320px,1fr);gap:12px;padding:12px;min-height:0;flex:1}.codebox,.previewbox{min-width:0;min-height:0;background:#111522;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}.tabs{display:flex;gap:3px;padding:8px;border-bottom:1px solid var(--line)}.tabs button{background:none;border:1px solid transparent;color:#9299ad;padding:8px 11px;border-radius:6px;font-size:11px;cursor:pointer}.tabs button.active{color:#e2d9ff;background:#a78bfa18;border-color:#a78bfa55}.codearea{display:none;flex:1;min-height:0;width:100%;resize:none;border:0;outline:0;background:#0b0e16;color:#c8d0e3;padding:16px;font:12px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2}.codearea.active{display:block}.preview-head{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid var(--line);font-size:11px;color:#aab1c4}.previewbox iframe{border:0;flex:1;background:white;width:100%;min-height:0}.editor-foot{padding:8px 14px;color:#7e879d;font-size:10px;border-top:1px solid var(--line)}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.editor-body{grid-template-columns:1fr;grid-template-rows:1fr 1fr}.editor-head{padding:0 12px}.editor-actions .btn{padding:8px 9px;font-size:10px}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero{padding-top:42px}.toolbar{align-items:flex-start;flex-direction:column}.wrap{width:calc(100% - 30px)}.editor-head{height:auto;min-height:58px;flex-wrap:wrap;padding:9px 12px}.editor-actions{flex-wrap:wrap}.editor-body{padding:8px;gap:8px}.tabs button{padding:7px 8px;font-size:10px}}
+</style>
 </head>
 <body>
-  <header><div class="wrap" style="display:flex;align-items:center;justify-content:space-between"><a class="brand" href="/"><span>CSS</span>GURU</a><a class="back" href="/">← Zurück zu CSSGuru</a></div></header>
-  <main class="wrap">
-    <section class="hero">
-      <div class="eyebrow">CSSGURU · WORKSPACE</div>
-      <h1>Deine Projekte.<br><span style="color:var(--violet)">Dein Spielraum.</span></h1>
-      <p>Ein eigener Bereich zum Ausprobieren, Entwickeln und Präsentieren neuer Webideen. Hier können wir CSSGuru Schritt für Schritt erweitern.</p>
-    </section>
-    <div class="bar"><h2>Projektübersicht</h2><span class="count">TESTBEREICH · VERSION 01</span></div>
-    <section class="grid" aria-label="Projektbereiche">
-      <article class="card"><div class="symbol">⌘</div><div class="tag">01 · Frontend</div><h3>HTML & CSS</h3><p>Layouts, Komponenten und responsive Designs testen.</p><div class="status"><i></i>Bereit zum Ausprobieren</div></article>
-      <article class="card"><div class="symbol">✳</div><div class="tag">02 · Interaktivität</div><h3>JavaScript</h3><p>Kleine Funktionen, Formulare und UI-Experimente entwickeln.</p><div class="status"><i></i>Bereit zum Ausprobieren</div></article>
-      <article class="card"><div class="symbol">◇</div><div class="tag">03 · KI-Experimente</div><h3>KI-Webprojekte</h3><p>Neue Ideen und Prototypen für CSSGuru sammeln.</p><div class="status"><i></i>Bereit zum Ausprobieren</div></article>
-    </section>
-    <aside class="note"><strong>Unser Testbereich</strong><br>Diese Seite ist zunächst getrennt von der bestehenden CSSGuru-Startseite. Wir können hier neue Oberflächen und Funktionen ausprobieren, ohne die aktuelle Design-to-Code-Seite zu verändern.</aside>
-  </main>
-  <footer><div class="wrap">© 2026 CSSGuru · <a href="/">Startseite</a></div></footer>
+<header><div class="wrap head"><a class="brand" href="/"><span>CSS</span>GURU</a><a class="back" href="/">← Zurück zu CSSGuru</a></div></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">CSSGURU · WORKSPACE</div><h1>Deine Projekte.<br><span style="color:var(--violet)">Dein Spielraum.</span></h1><p>Lege kleine Webprojekte an, schreibe HTML, CSS und JavaScript und sieh das Ergebnis direkt in der Live-Vorschau.</p></section>
+<div class="toolbar"><div><h2>Projektübersicht</h2><div class="sub" id="projectCount">Deine lokalen Testprojekte</div></div><button class="btn primary" id="newProject">＋ Neues Projekt</button></div>
+<section class="grid" id="projectGrid" aria-label="Deine Projekte"></section>
+<div class="info"><strong>Hinweis zum Testbereich:</strong> Projekte und Code werden zunächst nur in diesem Browser auf diesem Gerät gespeichert (Local Storage). Sie werden noch nicht automatisch zu GitHub hochgeladen und sind nicht öffentlich sichtbar. Die Live-Vorschau läuft in einem isolierten Fenster.</div>
+</main>
+<footer><div class="wrap">© 2026 CSSGuru · <a href="/">Startseite</a></div></footer>
+
+<div class="overlay" id="newDialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+<form class="dialog" id="newForm"><h2 id="dialogTitle">Neues Projekt anlegen</h2><p>Starte mit einem Namen und einer kurzen Beschreibung.</p>
+<div class="field"><label for="projectName">Projektname</label><input id="projectName" maxlength="60" required placeholder="z. B. Meine Landingpage"></div>
+<div class="field"><label for="projectDescription">Beschreibung (optional)</label><input id="projectDescription" maxlength="140" placeholder="Was möchtest du ausprobieren?"></div>
+<div class="dialog-actions"><button type="button" class="btn ghost" id="cancelNew">Abbrechen</button><button class="btn primary" type="submit">Projekt erstellen</button></div></form>
+</div>
+
+<section class="editor" id="editor" aria-label="Projekteditor">
+<div class="editor-head"><div><div class="editor-title" id="editorTitle">Projekt</div><div class="sub">Änderungen werden automatisch lokal gespeichert</div></div><div class="editor-actions"><button class="btn ghost" id="closeEditor">← Übersicht</button><button class="btn" id="refreshPreview">Vorschau aktualisieren</button><button class="btn primary" id="downloadProject">↓ HTML herunterladen</button></div></div>
+<div class="editor-body">
+<div class="codebox"><div class="tabs" role="tablist"><button class="active" data-code="html">index.html</button><button data-code="css">styles.css</button><button data-code="js">script.js</button></div>
+<textarea class="codearea active" id="htmlCode" spellcheck="false" aria-label="HTML-Code"></textarea><textarea class="codearea" id="cssCode" spellcheck="false" aria-label="CSS-Code"></textarea><textarea class="codearea" id="jsCode" spellcheck="false" aria-label="JavaScript-Code"></textarea></div>
+<div class="previewbox"><div class="preview-head"><span>LIVE-VORSCHAU</span><span id="previewStatus">Bereit</span></div><iframe id="livePreview" title="Live-Vorschau" sandbox="allow-scripts"></iframe><div class="editor-foot">Vorschau ist isoliert. Externe Dienste und Serverfunktionen sind nicht verbunden.</div></div>
+</div></section>
+<script>
+(function(){
+const STORE='cssguru-projects-v1';
+const starterHTML='<!doctype html>\n<html lang="de">\n<head>\n  <meta charset="utf-8">\n  <meta name="viewport" content="width=device-width,initial-scale=1">\n  <title>Mein erstes Projekt</title>\n</head>\n<body>\n  <main class="card">\n    <span class="tag">MEIN ERSTES PROJEKT</span>\n    <h1>Hallo, CSSGuru!</h1>\n    <p>Ändere den HTML-, CSS- oder JavaScript-Code und sieh dein Ergebnis live.</p>\n    <button id="hello">Ausprobieren</button>\n    <p id="message"></p>\n  </main>\n</body>\n</html>';
+const starterCSS='*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f2efff;color:#242039;font:16px/1.6 system-ui,sans-serif}.card{width:min(560px,calc(100% - 32px));padding:42px;border-radius:22px;background:white;box-shadow:0 18px 60px #30205a18}.tag{font-size:11px;letter-spacing:.16em;color:#7958d6;font-weight:800}h1{font-size:clamp(32px,6vw,48px);line-height:1.1;margin:16px 0}p{color:#6c6880}button{border:0;border-radius:9px;padding:12px 18px;background:#7958d6;color:white;font-weight:700;cursor:pointer}';
+const starterJS="document.getElementById('hello')?.addEventListener('click',()=>{document.getElementById('message').textContent='Prima! Dein JavaScript funktioniert.';});";
+let projects=[],currentId=null,saveTimer=null;
+const $=id=>document.getElementById(id);
+function load(){try{projects=JSON.parse(localStorage.getItem(STORE)||'[]');if(!Array.isArray(projects))projects=[]}catch(e){projects=[]}}
+function persist(){try{localStorage.setItem(STORE,JSON.stringify(projects));$('previewStatus').textContent='Lokal gespeichert'}catch(e){$('previewStatus').textContent='Speicher voll – bitte Code exportieren'}}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){const grid=$('projectGrid');$('projectCount').textContent=projects.length+' '+(projects.length===1?'Projekt':'Projekte')+' · nur in diesem Browser gespeichert';if(!projects.length){grid.innerHTML='<div class="empty"><strong>Noch keine Projekte vorhanden</strong>Lege dein erstes Projekt an und probiere den Editor aus.</div>';return}grid.innerHTML=projects.map(p=>'<article class="project"><div class="project-top"><div class="symbol">⌘</div><span class="pill">TESTPROJEKT</span></div><h3>'+esc(p.name)+'</h3><p>'+esc(p.description||'Noch keine Beschreibung')+'</p><div class="project-foot"><span class="updated">Zuletzt geändert: '+new Date(p.updated).toLocaleDateString('de-DE')+'</span><button class="open" data-open="'+p.id+'">Öffnen →</button></div></article>').join('')}
+function create(name,description){const p={id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),name,description,html:starterHTML,css:starterCSS,js:starterJS,updated:new Date().toISOString()};projects.unshift(p);persist();render();openProject(p.id)}
+function openProject(id){const p=projects.find(x=>x.id===id);if(!p)return;currentId=id;$('editorTitle').textContent=p.name;$('htmlCode').value=p.html;$('cssCode').value=p.css;$('jsCode').value=p.js;$('editor').classList.add('show');document.body.style.overflow='hidden';updatePreview()}
+function closeEditor(){saveCurrent();$('editor').classList.remove('show');document.body.style.overflow='';currentId=null;render()}
+function saveCurrent(){const p=projects.find(x=>x.id===currentId);if(!p)return;p.html=$('htmlCode').value;p.css=$('cssCode').value;p.js=$('jsCode').value;p.updated=new Date().toISOString();persist()}
+function updatePreview(){const p=projects.find(x=>x.id===currentId);if(!p)return;saveCurrent();const html=p.html.replace(/<head([^>]*)>/i,'<head$1><style>'+p.css.replace(/<\/style/gi,'<\\/style')+'</style>').replace(/<\/body>/i,'<script>'+p.js.replace(/<\/script/gi,'<\\/script')+'<\/script></body>');$('livePreview').srcdoc=html;$('previewStatus').textContent='Vorschau aktualisiert'}
+function activeCode(tab){document.querySelectorAll('[data-code]').forEach(b=>b.classList.toggle('active',b.dataset.code===tab));['html','css','js'].forEach(k=>$ (k+'Code').classList.toggle('active',k===tab))}
+$('newProject').addEventListener('click',()=>{$('newDialog').classList.add('show');$('projectName').focus()});
+$('cancelNew').addEventListener('click',()=>{$('newDialog').classList.remove('show')});
+$('newDialog').addEventListener('click',e=>{if(e.target===$('newDialog'))$('newDialog').classList.remove('show')});
+$('newForm').addEventListener('submit',e=>{e.preventDefault();const name=$('projectName').value.trim();if(!name)return;const desc=$('projectDescription').value.trim();$('newForm').reset();$('newDialog').classList.remove('show');create(name,desc)});
+$('projectGrid').addEventListener('click',e=>{const b=e.target.closest('[data-open]');if(b)openProject(b.dataset.open)});
+$('closeEditor').addEventListener('click',closeEditor);
+$('refreshPreview').addEventListener('click',updatePreview);
+document.querySelectorAll('[data-code]').forEach(b=>b.addEventListener('click',()=>activeCode(b.dataset.code)));
+['htmlCode','cssCode','jsCode'].forEach(id=>$(id).addEventListener('input',()=>{clearTimeout(saveTimer);saveTimer=setTimeout(()=>{saveCurrent();},350)}));
+$('downloadProject').addEventListener('click',()=>{saveCurrent();const p=projects.find(x=>x.id===currentId);if(!p)return;const combined=p.html.replace(/<head([^>]*)>/i,'<head$1><style>'+p.css+'</style>').replace(/<\/body>/i,'<script>'+p.js+'<\/script></body>');const blob=new Blob([combined],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=(p.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'cssguru-projekt')+'.html';a.click();URL.revokeObjectURL(url)});
+window.addEventListener('beforeunload',saveCurrent);
+load();render();
+})();
+</script>
 </body>
 </html>
