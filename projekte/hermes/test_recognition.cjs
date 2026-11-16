@@ -10,7 +10,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const base = "/home/hermes/CSSGuru/projects/hermes/projekte/hermes";
+const base = "/home/hermes/CSSGuru/projects/hermes";
 const comp = path.join(base, "components");
 const recognitionPath = path.join(base, "recognition.js");
 
