@@ -28,14 +28,14 @@ footer{border-top:1px solid #ffffff12;padding:20px 0;color:#777f93;font-size:12p
 </style>
 </head>
 <body>
-<header><div class="wrap head"><a class="brand" href="/"><span>CSS</span>GURU</a><a class="back" href="/">← Zurück zu CSSGuru</a></div></header>
+<div data-csguru-header></div>
 <main class="wrap">
 <section class="hero"><div class="eyebrow">CSSGURU · WORKSPACE</div><h1>Deine Projekte.<br><span style="color:var(--violet)">Dein Spielraum.</span></h1><p>Lege kleine Webprojekte an, schreibe HTML, CSS und JavaScript und sieh das Ergebnis direkt in der Live-Vorschau.</p></section>
 <div class="toolbar"><div><h2>Projektübersicht</h2><div class="sub" id="projectCount">Deine lokalen Testprojekte</div></div><button class="btn primary" id="newProject">＋ Neues Projekt</button></div>
 <section class="grid" id="projectGrid" aria-label="Deine Projekte"></section>
 <div class="info"><strong>Hinweis zum Testbereich:</strong> Projekte und Code werden zunächst nur in diesem Browser auf diesem Gerät gespeichert (Local Storage). Sie werden noch nicht automatisch zu GitHub hochgeladen und sind nicht öffentlich sichtbar. Die Live-Vorschau läuft in einem isolierten Fenster.</div>
 </main>
-<footer><div class="wrap">© 2026 CSSGuru · <a href="/">Startseite</a></div></footer>
+<div data-csguru-footer></div>
 
 <div class="overlay" id="newDialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
 <form class="dialog" id="newForm"><h2 id="dialogTitle">Neues Projekt anlegen</h2><p>Starte mit einem Namen und einer kurzen Beschreibung.</p>
@@ -83,5 +83,6 @@ window.addEventListener('beforeunload',saveCurrent);
 load();render();
 })();
 </script>
+<script src="/components/include.js" defer></script>
 </body>
 </html>
