@@ -9,11 +9,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="index.html"><span class="mark">&lt;/&gt;</span>cssguru<span class="violet">.</span></a>
-    <div class="topmeta"><i></i> AI DESIGN STUDIO <b>BETA</b></div>
-    <a class="contact" href="index.html">← Zurück</a>
-  </header>
+  <div data-csguru-header></div>
   <main class="contact-main">
     <section class="contact-card">
       <div class="eyebrow">✦ &nbsp; WIR SIND FÜR DICH DA</div>
@@ -37,7 +33,8 @@
       </form>
     </section>
   </main>
-  <footer><span>© 2026 CSSGuru</span><span>Aus Design wird Code.</span><nav class="footer-links"><a href="datenschutz.html">Datenschutz</a><a href="impressum.html">Impressum</a></nav></footer>
+  <div data-csguru-footer></div>
+  <script src="/components/include.js" defer></script>
   <script>
     document.getElementById('contactForm').addEventListener('submit', function(event) {
       event.preventDefault();
