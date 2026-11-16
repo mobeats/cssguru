@@ -4,7 +4,7 @@
   const assetUrl = (name) => new URL('/components/' + name, window.location.origin).href;
 
   function loadStyles() {
-    if (document.querySelector('link[data-csguru-shared-styles]')) return;
+    if (document.querySelector('link[data-csguru-shared-styles], link[href$="/components/shared.css"]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = assetUrl('shared.css');
