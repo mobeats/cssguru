@@ -24,6 +24,9 @@ if ! gh auth status >/dev/null 2>&1; then
   exit 1
 fi
 
+# Configure Git HTTPS operations to use the authenticated gh account.
+gh auth setup-git
+
 if [ ! -d "$HOME_DIR/projects/cssguru/.git" ]; then
   echo "CSSGuru fehlt unter $HOME_DIR/projects/cssguru." >&2
   exit 1
