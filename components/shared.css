@@ -1,0 +1,19 @@
+/* CSSGuru shared site chrome: one header and footer for every page */
+.csg-site-header,.csg-site-footer{box-sizing:border-box;width:100%;font-family:'DM Sans',Inter,system-ui,-apple-system,'Segoe UI',sans-serif}
+.csg-site-header{height:auto!important;margin:0!important;padding:0 clamp(16px,4vw,56px);border:0!important;border-bottom:1px solid #ffffff18!important;background:rgba(9,11,18,.92)}
+.csg-site-header__inner{width:min(1360px,100%);min-height:76px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.csg-brand{display:inline-flex;align-items:center;color:#f4f5fb!important;text-decoration:none!important;font-size:27px;font-weight:850;letter-spacing:-1.2px;white-space:nowrap}
+.csg-brand span{color:#a78bfa}
+.csg-site-nav{display:flex;align-items:center;justify-content:center;gap:clamp(14px,2.5vw,32px)}
+.csg-site-nav a,.csg-site-footer a{color:#bfc3d2!important;text-decoration:none!important;font-size:13px;transition:color .18s ease}
+.csg-site-nav a:hover,.csg-site-footer a:hover{color:#c7b7ff!important}
+.csg-site-status{display:flex;align-items:center;gap:7px;color:#aeb2c4;font:10px ui-monospace,monospace;letter-spacing:1px;white-space:nowrap}
+.csg-site-status i{width:7px;height:7px;border-radius:50%;background:#72dfa9;display:inline-block}
+.csg-site-status b{color:#c7b7ff;border:1px solid #a78bfa66;border-radius:4px;padding:3px 5px;font-size:9px}
+.csg-site-footer{height:auto!important;margin:0!important;padding:18px clamp(16px,4vw,56px)!important;border:0!important;border-top:1px solid #ffffff18!important;background:transparent;color:#858ca1;font-size:12px}
+.csg-site-footer__inner{width:min(1360px,100%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.csg-site-footer__tagline{color:#777f93}
+.csg-site-footer nav{display:flex;align-items:center;gap:clamp(12px,2vw,22px);flex-wrap:wrap}
+.csg-site-footer a{font-size:12px}
+@media(max-width:760px){.csg-site-header__inner{min-height:70px;gap:12px;flex-wrap:wrap;padding:12px 0}.csg-site-nav{order:3;width:100%;justify-content:flex-start;padding:0 0 4px}.csg-site-status{font-size:9px}.csg-site-footer__inner{align-items:flex-start}.csg-site-footer__tagline{display:none}}
+@media(max-width:420px){.csg-brand{font-size:24px}.csg-site-status{font-size:8px}.csg-site-nav{gap:18px}.csg-site-nav a{font-size:12px}}
