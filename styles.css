@@ -94,3 +94,15 @@ footer a{font-size:12px}
 .result-panel .devices .device:focus-visible{outline:2px solid #c7b7ff;outline-offset:2px}
 @media(max-width:700px){.result-panel .devices{gap:5px}.result-panel .devices .device{width:36px;height:36px;padding:6px}}
 
+
+
+/* Clear loading feedback while the AI converts a design */
+.primary{display:flex;align-items:center;justify-content:center;gap:12px;position:relative}
+.primary .convert-label{display:inline}
+.primary .convert-arrow{float:none;margin:0;transition:opacity .15s}
+.primary .convert-spinner{width:17px;height:17px;flex:0 0 17px;border:2px solid #ffffff55;border-top-color:#fff;border-radius:50%;animation:cssguru-spin .75s linear infinite}
+.primary .convert-spinner[hidden]{display:none}
+.primary.is-loading .convert-arrow{display:none}
+.primary.is-loading{cursor:wait;opacity:1}
+@keyframes cssguru-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.primary .convert-spinner{animation-duration:1.8s}}
