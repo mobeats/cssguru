@@ -77,3 +77,6 @@ footer a{font-size:12px}
 .empty[hidden] {
   display: none !important;
 }
+
+/* Respect hidden state for result panes despite their display layout rules. */
+.preview-stage[hidden],.code-pane[hidden]{display:none!important}
