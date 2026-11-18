@@ -80,3 +80,17 @@ footer a{font-size:12px}
 
 /* Respect hidden state for result panes despite their display layout rules. */
 .preview-stage[hidden],.code-pane[hidden]{display:none!important}
+
+/* Device preview controls: clear, accessible outline icons */
+.result-panel .devices{gap:7px}
+.result-panel .devices .device{
+  width:40px;height:38px;padding:7px;display:grid;place-items:center;
+  border:1px solid #34394d;border-radius:8px;color:#aeb4c8;
+  background:#111522;transition:background .18s,border-color .18s,color .18s,transform .18s
+}
+.result-panel .devices .device svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.result-panel .devices .device:hover{border-color:#a58bff;color:#d2c6ff}
+.result-panel .devices .device.active{background:#a58bff22;border-color:#a58bff;color:#c7b7ff}
+.result-panel .devices .device:focus-visible{outline:2px solid #c7b7ff;outline-offset:2px}
+@media(max-width:700px){.result-panel .devices{gap:5px}.result-panel .devices .device{width:36px;height:36px;padding:6px}}
+

@@ -35,7 +35,11 @@
                 <div><small>02</small><h2>Dein Ergebnis</h2></div><button id="downloadBtn" class="download" disabled>↓ &nbsp; ZIP exportieren</button></div>
                 <div class="toolbar">
                   <div class="tabs"><button class="tab active" data-tab="preview">▣ &nbsp; Vorschau</button><button class="tab" data-tab="code">‹/› &nbsp; Code</button></div>
-                  <div class="devices"><button class="device active" data-device="desktop" title="Desktop">▰</button><button class="device" data-device="tablet" title="Tablet">▯</button><button class="device" data-device="mobile" title="Smartphone">▯</button></div></div>
+                  <div class="devices" role="group" aria-label="Vorschau-Gerät">
+                    <button class="device active" data-device="desktop" type="button" title="PC" aria-label="PC-Vorschau" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></button>
+                    <button class="device" data-device="tablet" type="button" title="Tablet" aria-label="Tablet-Vorschau" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 18h2"/></svg></button>
+                    <button class="device" data-device="mobile" type="button" title="Smartphone" aria-label="Smartphone-Vorschau" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></button>
+                  </div></div>
                     <div id="previewPane" class="preview-stage"><div id="browser" class="browser">
                     <div class="browserbar"><span>● ● ●</span><label>Deine Website-Vorschau</label></div>
                   <div id="emptyPreview" class="empty"><div class="illustration">
