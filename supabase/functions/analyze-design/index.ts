@@ -124,6 +124,11 @@ serve(async (req) => {
 
 BILDER, LOGOS UND GRAFIKEN – besonders wichtig:
 - Lass sichtbare Bildbereiche, Logos, Produktbilder, Fotos, Illustrationen und Icons nicht einfach weg. Setze sie im HTML an der passenden Stelle um.
+- WICHTIG: Du bekommst nur einen Screenshot, nicht die Originaldateien. Erkenne deshalb alle sichtbaren echten Fotos und Produktbilder als zuschneidbare Bildbereiche.
+- Für jedes sichtbare Foto/Produktbild gib einen Bildbereich in imageRegions zurück. Koordinaten sind normierte Dezimalwerte von 0 bis 1 bezogen auf das gesamte hochgeladene Bild: x, y, width, height. x/y sind linke obere Ecke; width/height sind die Größe.
+- Nummeriere Bildbereiche in Leserichtung von oben nach unten und links nach rechts: region-01, region-02 usw. Erfasse jedes eigenständige Foto einzeln, auch zwei nebeneinanderliegende Kartenbilder. Schneide möglichst nur das Foto selbst aus, nicht Überschrift, Beschreibung oder Button.
+- Verwende für diese Bereiche zwingend echte <img>-Elemente mit src="images/screenshot-01.png", src="images/screenshot-02.png" usw. Die Dateinummer muss zu region-01, region-02 usw. passen. CSSGuru schneidet diese Bereiche anschließend aus dem hochgeladenen Screenshot aus und speichert sie im ZIP.
+- Erzeuge keine erfundenen Bildadressen und schreibe für erkannte Screenshot-Bildbereiche keine figcaption als Ersatz. Wenn kein Foto sichtbar ist, gib imageRegions als leeres Array zurück.
 - Ein Logo muss immer sichtbar umgesetzt werden: Wenn es sich aus dem Screenshot erkennen lässt, baue es möglichst ähnlich als inline-SVG direkt im HTML oder als gestaltetes Textlogo mit CSS nach. Verwende keine leere Bildfläche und keinen bloßen Alt-Text als Ersatz.
 - Kleine Symbole und einfache Grafiken bevorzugt als inline-SVG erstellen. Das SVG muss direkt im HTML stehen, damit es auch im ZIP-Export enthalten ist.
 - Für erkennbare Fotos oder komplexe Motive: Verwende nur eine tatsächlich bekannte, vollständige und plausible HTTPS-Bildadresse, wenn du sie sicher kennst. Erfinde niemals URLs, Dateinamen oder nicht vorhandene lokale Bilddateien.
@@ -134,7 +139,7 @@ BILDER, LOGOS UND GRAFIKEN – besonders wichtig:
 - Bevorzuge selbst enthaltene Inhalte (inline-SVG, CSS-Grafiken und Textlogos), damit Vorschau und ZIP-Export ohne zusätzliche Bilddateien funktionieren.
 - Keine externen JavaScript- oder CSS-Abhängigkeiten für Logos und Icons voraussetzen.
 
-Gib vollständiges, zusammenhängendes HTML, CSS und optional JS zurück. Erfinde keine großen zusätzlichen Sektionen. Antworte ausschließlich als JSON-Objekt mit String-Feldern: {"index.html":"vollständiges HTML","styles.css":"vollständiges CSS","script.js":"JavaScript oder leer"}. Kein Markdown.`;
+Gib vollständiges, zusammenhängendes HTML, CSS und optional JS zurück. Erfinde keine großen zusätzlichen Sektionen. Antworte ausschließlich als JSON-Objekt mit diesen Feldern: {"index.html":"vollständiges HTML","styles.css":"vollständiges CSS","script.js":"JavaScript oder leer","imageRegions":[{"id":"region-01","x":0.1,"y":0.2,"width":0.3,"height":0.4}]}. imageRegions muss ein Array mit allen erkannten Foto-/Produktbild-Ausschnitten sein oder [] wenn keine vorhanden sind. Kein Markdown.`;
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: { "Authorization": "Bearer " + key, "Content-Type": "application/json" },
@@ -156,7 +161,8 @@ Gib vollständiges, zusammenhängendes HTML, CSS und optional JS zurück. Erfind
     return new Response(JSON.stringify({
       files: { "index.html": bundled.html, "styles.css": bundled.css, "script.js": typeof out["script.js"] === "string" ? out["script.js"] : "" },
       assets: bundled.assets,
-      assetWarnings: bundled.warnings
+      assetWarnings: bundled.warnings,
+      imageRegions: Array.isArray(out.imageRegions) ? out.imageRegions : []
     }), {
       headers: { ...cors, "Content-Type": "application/json", "Cache-Control": "no-store" }
     });
