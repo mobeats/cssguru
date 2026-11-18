@@ -72,3 +72,8 @@ footer a{font-size:12px}
 /* CSSGuru wordmark: make the logo more prominent */
 .topbar .brand{font-size:29px;letter-spacing:-1.2px;line-height:1.1}
 @media(max-width:700px){.topbar .brand{font-size:26px}}
+
+/* Hide the empty preview placeholder when the generated preview is ready. */
+.empty[hidden] {
+  display: none !important;
+}
