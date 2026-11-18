@@ -32,7 +32,19 @@ serve(async (req) => {
     if (typeof image !== "string" || !image.startsWith("data:image/")) throw new Error("Ungültiges Bild.");
     if (image.length > 16_800_000) throw new Error("Das Bild ist zu groß. Bitte ein Bild unter 12 MB verwenden.");
 
-    const prompt = 'Rekonstruiere dieses Website-Design möglichst detailgetreu als responsive Website. Analysiere Layout, Farben, Typografie, Abstände und Komponenten. Semantisches HTML5, vollständiges CSS3 mit Mobile Media Queries und optional Vanilla JS. Erfinde keine großen zusätzlichen Sektionen. Antworte ausschließlich als JSON-Objekt mit String-Feldern: {"index.html":"vollständiges HTML","styles.css":"vollständiges CSS","script.js":"JavaScript oder leer"}. Kein Markdown.';
+    const prompt = `Rekonstruiere dieses Website-Design möglichst detailgetreu als vollständige responsive Website. Analysiere Layout, Farben, Typografie, Abstände und alle sichtbaren Komponenten. Erstelle semantisches HTML5, vollständiges CSS3 mit Mobile Media Queries und bei Bedarf Vanilla JavaScript. Erfinde keine großen zusätzlichen Sektionen.
+
+BILDER, LOGOS UND GRAFIKEN – besonders wichtig:
+- Lass sichtbare Bildbereiche, Logos, Produktbilder, Fotos, Illustrationen und Icons nicht einfach weg. Setze sie im HTML an der passenden Stelle um.
+- Ein Logo muss immer sichtbar umgesetzt werden: Wenn es sich aus dem Screenshot erkennen lässt, baue es möglichst ähnlich als inline-SVG direkt im HTML oder als gestaltetes Textlogo mit CSS nach. Verwende keine leere Bildfläche und keinen bloßen Alt-Text als Ersatz.
+- Kleine Symbole und einfache Grafiken bevorzugt als inline-SVG erstellen. Das SVG muss direkt im HTML stehen, damit es auch im ZIP-Export enthalten ist.
+- Für erkennbare Fotos oder komplexe Motive: Verwende nur eine tatsächlich bekannte, vollständige und plausible HTTPS-Bildadresse, wenn du sie sicher kennst. Erfinde niemals URLs, Dateinamen oder nicht vorhandene lokale Bilddateien.
+- Wenn keine verlässliche Bilddatei-Adresse vorliegt, erstelle eine passende, optisch ansprechende SVG-Illustration oder CSS-Grafik als eingebetteten Bestandteil der Seite, statt ein kaputtes <img>-Element auszugeben.
+- Jedes echte <img>-Element braucht ein sinnvolles alt-Attribut, eine gültige src-Adresse und sollte mit CSS responsiv dargestellt werden (max-width:100%; height:auto;).
+- Bevorzuge selbst enthaltene Inhalte (inline-SVG, CSS-Grafiken und Textlogos), damit Vorschau und ZIP-Export ohne zusätzliche Bilddateien funktionieren.
+- Keine externen JavaScript- oder CSS-Abhängigkeiten für Logos und Icons voraussetzen.
+
+Gib vollständiges, zusammenhängendes HTML, CSS und optional JS zurück. Erfinde keine großen zusätzlichen Sektionen. Antworte ausschließlich als JSON-Objekt mit String-Feldern: {"index.html":"vollständiges HTML","styles.css":"vollständiges CSS","script.js":"JavaScript oder leer"}. Kein Markdown.`;
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: { "Authorization": "Bearer " + key, "Content-Type": "application/json" },
