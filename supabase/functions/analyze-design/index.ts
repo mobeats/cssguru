@@ -131,8 +131,9 @@ BILDER, LOGOS UND GRAFIKEN – besonders wichtig:
 - Erzeuge keine erfundenen Bildadressen und schreibe für erkannte Screenshot-Bildbereiche keine figcaption als Ersatz. Wenn kein Foto sichtbar ist, gib imageRegions als leeres Array zurück.
 - Ein Logo muss immer sichtbar umgesetzt werden: Wenn es sich aus dem Screenshot erkennen lässt, baue es möglichst ähnlich als inline-SVG direkt im HTML oder als gestaltetes Textlogo mit CSS nach. Verwende keine leere Bildfläche und keinen bloßen Alt-Text als Ersatz.
 - Kleine Symbole und einfache Grafiken bevorzugt als inline-SVG erstellen. Das SVG muss direkt im HTML stehen, damit es auch im ZIP-Export enthalten ist.
-- Für erkennbare Fotos oder komplexe Motive: Verwende nur eine tatsächlich bekannte, vollständige und plausible HTTPS-Bildadresse, wenn du sie sicher kennst. Erfinde niemals URLs, Dateinamen oder nicht vorhandene lokale Bilddateien.
-- Wenn du eine echte HTTPS-Bildadresse verwendest, gib sie als src im <img>-Element oder als CSS-background-image an. CSSGuru lädt diese Bilddateien anschließend herunter und legt sie im ZIP lokal unter images/ ab.
+- WICHTIG: Für jedes Foto/Produktbild, das im hochgeladenen Screenshot sichtbar ist, hat der Screenshot-Ausschnitt immer Vorrang vor externen Bildadressen. Gib dafür imageRegions zurück und verwende im HTML zwingend src="images/screenshot-01.png", src="images/screenshot-02.png" usw. Verwende für diese sichtbaren Motive KEINE HTTPS-Bildadresse.
+- Die Reihenfolge der Foto-<img>-Elemente im HTML muss exakt der Reihenfolge der Einträge in imageRegions entsprechen (oben nach unten, links nach rechts). Logos und reine Icons dürfen inline-SVG bleiben und zählen nicht als Foto-Bildbereiche.
+- Externe HTTPS-Bildadressen sind nur für zusätzliche Bilder erlaubt, die nicht im Screenshot sichtbar sind.
 - Verwende für Fotos keine bloßen figcaption-Beschreibungen als Ersatz für das Bild.
 - Wenn keine verlässliche Bilddatei-Adresse vorliegt, erstelle eine passende, optisch ansprechende SVG-Illustration oder CSS-Grafik als eingebetteten Bestandteil der Seite, statt ein kaputtes <img>-Element auszugeben.
 - Jedes echte <img>-Element braucht ein sinnvolles alt-Attribut, eine gültige src-Adresse und sollte mit CSS responsiv dargestellt werden (max-width:100%; height:auto;).
