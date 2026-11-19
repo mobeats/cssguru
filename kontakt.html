@@ -1,60 +1,49 @@
 <!doctype html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kontakt — CSSGuru</title>
-<link rel="stylesheet" href="/components/shared.css">
-<style>
-  body{font:16px/1.7 system-ui;background:#090b12;color:#eef;margin:0}a{color:#b49cff}
-  .legal-content{max-width:760px;margin:auto;padding:40px 20px}
-  h1{font-size:2rem;color:#111;margin:0 .8em 1em;text-align:center}
-  .contact-item{padding:14px 0;border-bottom:1px solid #e0ddd8}
-  .contact-item:last-child{border-bottom:0}
-  .contact-item strong{display:inline-block;font-weight:800;color:#111;width:100px}
-  .contact-form{margin-top:24px}
-  .contact-form input,.contact-form textarea{width:100%;border:1px solid #ccc;border-radius:6px;background:#fff;color:#222;padding:10px 11px;font:14px system-ui,sans-serif}
-  .contact-form input:focus,.contact-form textarea:focus{border-color:#a58bff;box-shadow:0 0 0 3px #a58bff18}
-  .contact-actions{display:flex;align-items:center;gap:16px;background:#090b12;padding:14px 18px;border-radius:8px}
-  .contact-submit{border:0;border-radius:6px;padding:10px 16px;background:#a58bff;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem}
-  .contact-note{font-size:.8rem;color:#777;text-align:center;margin:12px 0 0}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b12">
+  <meta name="description" content="Nimm Kontakt mit CSSGuru auf.">
+  <title>Kontakt — CSSGuru</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div data-csguru-header></div>
-<main class="legal-content">
-  <h1>Kontakt</h1>
-  <p>Frage hast du? Schreib uns eine Nachricht.</p>
-
-  <section class="contact-item">
-    <strong>E‑Mail</strong>
-    <a href="mailto:info@cssguru.de">info@cssguru.de</a>
-  </section>
-
-  <form class="contact-form" id="contactForm">
-    <label for="subject">Betreff</label>
-    <input id="subject" name="subject" type="text" placeholder="Worum geht es?" required>
-    <label for="email">E-Mail-Adresse</label>
-    <input id="email" name="email" type="email" placeholder="name@beispiel.de" required>
-    <label for="message">Nachricht</label>
-    <textarea id="message" name="message" placeholder="Schreibe hier deine Nachricht ..." required></textarea>
-    <div class="contact-actions">
-      <button class="contact-submit" type="submit">E-Mail vorbereiten →</button>
-      <a class="contact-close" href="index.html">Zurück zu CSSGuru</a>
-    </div>
-    <p class="contact-note">Beim Absenden öffnet sich dein E-Mail-Programm mit deiner Nachricht an info@cssguru.de.</p>
-  </form>
-</main>
-<div data-csguru-footer></div>
-<script src="/components/include.js" defer></script>
-<script>
-  document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const subject = document.getElementById('subject').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-    window.location.href = 'mailto:info@cssguru.de?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(message);
-  });
-</script>
+  <div data-csguru-header></div>
+  <main class="contact-main">
+    <section class="contact-card">
+      <div class="eyebrow">✦ &nbsp; WIR SIND FÜR DICH DA</div>
+      <h1>Kontakt</h1>
+      <p>Du hast eine Frage oder möchtest etwas zu CSSGuru mitteilen? Schreib uns eine Nachricht.</p>
+      <form class="contact-form" id="contactForm">
+        <label for="subject">Betreff
+          <input id="subject" name="subject" type="text" placeholder="Worum geht es?" required>
+        </label>
+        <label for="email">Deine E-Mail-Adresse
+          <input id="email" name="email" type="email" placeholder="name@beispiel.de" required>
+        </label>
+        <label for="message">Nachricht
+          <textarea id="message" name="message" placeholder="Schreibe hier deine Nachricht ..." required></textarea>
+        </label>
+        <div class="contact-actions">
+          <button class="contact-submit" type="submit">E-Mail vorbereiten&nbsp; →</button>
+          <a class="contact-back" href="index.html">Zurück zu CSSGuru</a>
+        </div>
+        <p class="contact-note">Beim Absenden öffnet sich dein E-Mail-Programm mit deiner Nachricht an info@cssguru.de. Dort kannst du sie noch prüfen und versenden.</p>
+      </form>
+    </section>
+  </main>
+  <div data-csguru-footer></div>
+  <script src="/components/include.js" defer></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const subject = document.getElementById('subject').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const body = 'Absender: ' + email + '\n\n' + message;
+      window.location.href = 'mailto:info@cssguru.de?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    });
+  </script>
 </body>
 </html>
